@@ -20,6 +20,8 @@ public class ShiroConfig {
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
         chain.addPathDefinition("/api/health", "anon");
+        // 印单/机台接口先行：认证体系接入前暂放行，操作人由请求方显式传入并落审计字段
+        chain.addPathDefinition("/api/print/**", "anon");
         chain.addPathDefinition("/error", "anon");
         chain.addPathDefinition("/**", "authc");
         return chain;

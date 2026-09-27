@@ -29,6 +29,12 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 
+# 不使用 Shiro 注解鉴权（接口暂走 anon/authc 过滤链），关闭其自动代理，
+# 避免与事务代理叠加把 Service 二次包装成 JDK 代理导致注入失败
+shiro:
+  annotations:
+    enabled: false
+
 logging:
   level:
     com.evops: INFO
