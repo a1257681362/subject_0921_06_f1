@@ -19,7 +19,10 @@ public class ShiroConfig {
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
+        // 当前阶段接口先满足建档与查询，操作人由请求头透传；鉴权后续接入
         chain.addPathDefinition("/api/health", "anon");
+        chain.addPathDefinition("/api/machines/**", "anon");
+        chain.addPathDefinition("/api/print-orders/**", "anon");
         chain.addPathDefinition("/error", "anon");
         chain.addPathDefinition("/**", "authc");
         return chain;
